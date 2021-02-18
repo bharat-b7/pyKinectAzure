@@ -78,7 +78,7 @@ if __name__ == "__main__":
         ir_image = get_ir_frame(pyK4A)
 
         # Check if the images have been read correctly
-        if ir_image and color_image:
+        if ir_image is not None and color_image is not None:
             # Show images
             cv2.imshow('IR Image', ir_image)
             cv2.imshow('RGB Image', color_image)
