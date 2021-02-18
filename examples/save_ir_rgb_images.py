@@ -46,8 +46,8 @@ if __name__ == "__main__":
             k = 1
             # Save images
             name = str(round(time.time()))
-            cv2.imwrite(join(save_path, name + '_ir.png'))
-            cv2.imwrite(join(save_path, name + '_rgb.png'))
+            cv2.imwrite(join(save_path, name + '_ir.png'), ir_image)
+            cv2.imwrite(join(save_path, name + '_rgb.png'), color_image)
 
         pyK4A.capture_release()
         if k == 1:  # Esc key to stop
