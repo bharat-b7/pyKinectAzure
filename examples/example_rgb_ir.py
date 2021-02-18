@@ -38,18 +38,18 @@ def get_rgb_frame(pyK4A):
     color_image_handle = pyK4A.capture_get_color_image()
 
     if not color_image_handle:
-        return color_image_handle
+        return color_image_handle, color_image_handle
 
     color_image = pyK4A.image_convert_to_numpy(color_image_handle)
     pyK4A.image_release(color_image_handle)
 
-    return color_image
+    return color_image, color_image_handle
 
 def get_ir_frame(pyK4A):
     ir_image_handle = pyK4A.capture_get_ir_image()
 
     if not ir_image_handle:
-        return ir_image_handle
+        return ir_image_handle, ir_image_handle
 
     ir_image = pyK4A.image_convert_to_numpy(ir_image_handle)
 
@@ -60,7 +60,7 @@ def get_ir_frame(pyK4A):
                                         alpha=0.4)  # alpha is fitted by visual comparison with Azure k4aviewer results
 
     pyK4A.image_release(ir_image_handle)
-    return image_to_show
+    return image_to_show, ir_image_handle
 
 if __name__ == "__main__":
 
@@ -74,11 +74,11 @@ if __name__ == "__main__":
         # Get capture
         pyK4A.device_get_capture()
 
-        color_image = get_rgb_frame(pyK4A)
-        ir_image = get_ir_frame(pyK4A)
+        color_image, color_image_handle = get_rgb_frame(pyK4A)
+        ir_image, ir_image_handle = get_ir_frame(pyK4A)
 
         # Check if the images have been read correctly
-        if ir_image is not None and color_image is not None:
+        if ir_image_handle and color_image_handle:
             # Show images
             cv2.imshow('IR Image', ir_image)
             cv2.imshow('RGB Image', color_image)
