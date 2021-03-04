@@ -62,6 +62,20 @@ def get_ir_frame(pyK4A):
     pyK4A.image_release(ir_image_handle)
     return image_to_show, ir_image_handle
 
+def get_depth_frame(pyK4A):
+    depth_image_handle = pyK4A.capture_get_depth_image()
+
+    if not depth_image_handle:
+        return depth_image_handle, depth_image_handle
+
+    depth_image = pyK4A.image_convert_to_numpy(depth_image_handle)
+    depth_color_image = cv2.convertScaleAbs(depth_image,
+                                            alpha=0.05)  # alpha is fitted by visual comparison with Azure k4aviewer results
+    depth_color_image = cv2.applyColorMap(depth_color_image, cv2.COLORMAP_JET)
+
+    pyK4A.image_release(depth_image_handle)
+    return depth_color_image, depth_image_handle
+
 if __name__ == "__main__":
     # Write video
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
