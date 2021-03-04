@@ -43,7 +43,7 @@ if __name__ == "__main__":
         # Check if the images have been read correctly
         if ir_image_handle and color_image_handle and depth_image_handle:
             # Transform Depth to RGB image
-            transformed_depth = pyK4A.transform_depth_to_color(depth_image_handle, color_image_handle)
+            transformed_depth = pyK4A.transform_depth_to_color(ir_image_handle, color_image_handle)
             transformed_depth = cv2.convertScaleAbs(transformed_depth,
                                                     alpha=0.05)  # alpha is fitted by visual comparison with Azure k4aviewer results
 
