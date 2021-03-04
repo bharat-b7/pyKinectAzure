@@ -5,14 +5,14 @@ Author: Bharat
 
 import sys
 sys.path.insert(1, '../pyKinectAzure/')
-sys.path.append('../')
-
+sys.path.append('../examples/')
+# import ipdb; ipdb.set_trace()
 import numpy as np
 from pyKinectAzure import pyKinectAzure, _k4a
 import cv2
 import os
 from os.path import join, split, exists
-from examples.example_rgb_ir import prepare_device, get_rgb_frame, get_ir_frame
+from example_rgb_ir import prepare_device, get_rgb_frame, get_ir_frame
 import time
 
 # Path to the module
