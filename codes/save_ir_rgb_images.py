@@ -5,6 +5,7 @@ Author: Bharat
 
 import sys
 sys.path.insert(1, '../pyKinectAzure/')
+sys.path.append('../')
 
 import numpy as np
 from pyKinectAzure import pyKinectAzure, _k4a
