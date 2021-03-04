@@ -39,11 +39,12 @@ if __name__ == "__main__":
         color_image, color_image_handle = get_rgb_frame(pyK4A)
         ir_image, ir_image_handle = get_ir_frame(pyK4A)
         depth_image, depth_image_handle = get_depth_frame(pyK4A)
-        # Transform Depth to RGB image
-        transformed_depth = pyK4A.transform_depth_to_color(depth_image_handle, color_image_handle)
 
         # Check if the images have been read correctly
-        if ir_image_handle and color_image_handle:
+        if ir_image_handle and color_image_handle and depth_image_handle:
+            # Transform Depth to RGB image
+            transformed_depth = pyK4A.transform_depth_to_color(depth_image_handle, color_image_handle)
+
             # Show images
             cv2.imshow('IR Image', ir_image)
             cv2.imshow('RGB Image', color_image)
