@@ -63,6 +63,9 @@ def get_ir_frame(pyK4A):
     return image_to_show, ir_image_handle
 
 if __name__ == "__main__":
+    # Write video
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
 
     pyK4A = prepare_device()
 
